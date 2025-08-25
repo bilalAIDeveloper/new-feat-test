@@ -28,15 +28,15 @@ graph TD
 
 ```mermaid
 graph TD
-    A[AI: "Who are you looking for right now?"] --> B[User Response]
-    B --> C[AI Analyzes Response]
-    C --> D[Extract Mission Type]
-    C --> E[Ask Clarifying Question]
-    C --> F[Help User Choose]
-    D --> G[Validate Mission Selection]
-    G --> H[Update Session: mission + roleCapabilities]
-    G --> I[Ask for Valid Choice]
-    H --> J[Move to Core Facets Phase]
+    A[AI ask: Who are you looking for right now?] --> B[User Response]
+    B --> C[AI analyzes response]
+    C --> D[Extract mission type]
+    C --> E[Ask clarifying question]
+    C --> F[Help user choose]
+    D --> G[Validate mission selection]
+    G --> H[Update session: mission + roleCapabilities]
+    G --> I[Ask for valid choice]
+    H --> J[Move to core facets phase]
     I --> A
     E --> A
     F --> A

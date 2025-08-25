@@ -78,7 +78,7 @@ graph TD
     B --> C{Check Dependencies}
     C -->|No Dependencies| D[Ready to Ask]
     C -->|Has Dependencies| E[Check Dependency Status]
-    E --> F{All Dependencies Met?]
+    E --> F{All dependencies met?}
     F -->|Yes| D
     F -->|No| G[Get Missing Dependencies]
     G --> H[Calculate Priority Score]

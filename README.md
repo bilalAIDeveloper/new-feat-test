@@ -15,73 +15,50 @@ graph TD
     style B fill:#fff3e0
 ```
 
-### 2. Mission-Driven Question Flow (Combined)
+### 2. Complete Question Flow (Combines Core, Mission, Dependencies)
 
 ```mermaid
 graph TD
-    A[Collect Basic Info] --> B[AI: Tell me about yourself]
-    B --> C[User Response]
-    C --> D[Extract Core Facets]
-    D --> E[Update Core Profile]
-    E --> F[AI: Who are you looking for?]
-    F --> G[User Response]
-    G --> H[Extract Mission + Role]
-    H --> I[Load Mission Config]
-    I --> J[Get Next Role Facet]
-    J --> K[Check Dependencies]
-    K -->|Ready| L[Ask Question]
-    K -->|Not Ready| M[Ask Dependency First]
-    L --> N[Process Answer]
-    N --> O[Update Progress]
-    O --> P{Phase Complete?}
-    P -->|Yes| Q[Next Phase]
-    P -->|No| J
-    Q --> R{All Complete?}
-    R -->|Yes| S[Ready for Matching]
-    R -->|No| J
+    A[Start Onboarding] --> B[Collect Core Facets]
+    B --> C[Ask: Where are you located?]
+    C --> D[User: Location]
+    D --> E[Ask: What's your gender?]
+    E --> F[User: Gender]
+    F --> G[Ask: How do you prefer to communicate?]
+    G --> H[User: Communication]
+    H --> I[Core Profile Complete]
+    
+    I --> J[Mission Selection]
+    J --> K[AI: Who are you looking for?]
+    K --> L[User: Mission Choice]
+    L --> M[Extract Mission + Role]
+    M --> N[Load Mission Config]
+    
+    N --> O[Get Next Role Facet]
+    O --> P[Check Dependencies]
+    P -->|Ready| Q[Ask Question]
+    P -->|Not Ready| R[Get Missing Dependencies]
+    R --> S[Sort by Priority]
+    S --> T[Return Next Ready Facet]
+    T --> Q
+    
+    Q --> U[User Responds]
+    U --> V[Process Answer]
+    V --> W[Update Progress]
+    W --> X{Phase Complete?}
+    X -->|Yes| Y[Next Phase]
+    X -->|No| O
+    Y --> Z{All Complete?}
+    Z -->|Yes| AA[Ready for Matching]
+    Z -->|No| O
     
     style A fill:#e1f5fe
-    style S fill:#4caf50
-    style Q fill:#e3f2fd
+    style AA fill:#4caf50
+    style I fill:#c8e6c9
+    style Y fill:#e3f2fd
 ```
 
-### 3. Core Facets Collection
-
-```mermaid
-graph TD
-    A[Start Core Collection] --> B[Ask: Where are you located?]
-    B --> C[User: Location]
-    C --> D[Ask: What's your gender?]
-    D --> E[User: Gender]
-    E --> F[Ask: How do you prefer to communicate?]
-    F --> G[User: Communication Preference]
-    G --> H[Core Profile Complete]
-    H --> I[Ready for Mission Selection]
-    
-    style A fill:#e1f5fe
-    style I fill:#e8f5e8
-    style H fill:#c8e6c9
-```
-
-### 4. Facet Priority & Dependencies
-
-```mermaid
-graph TD
-    A[Facet Registry] --> B[Get Dependencies]
-    B --> C{Has Dependencies?}
-    C -->|No| D[Ready to Ask]
-    C -->|Yes| E[Check if Met]
-    E -->|Met| D
-    E -->|Not Met| F[Get Missing Dependencies]
-    F --> G[Sort by Priority]
-    G --> H[Return Next Ready Facet]
-    D --> H
-    
-    style A fill:#e1f5fe
-    style H fill:#c8e6c9
-```
-
-### 5. Session State Transitions
+### 3. Session State Transitions
 
 ```mermaid
 graph TD
@@ -109,7 +86,7 @@ graph TD
     style J fill:#e3f2fd
 ```
 
-### 6. Data Flow Architecture
+### 4. Data Flow Architecture
 
 ```mermaid
 graph TD
@@ -128,7 +105,7 @@ graph TD
     style F fill:#e3f2fd
 ```
 
-### 7. Complete Onboarding Journey (Tutor mission → student capability)
+### 5. Complete Onboarding Journey (Tutor mission → student capability)
 
 ```mermaid
 sequenceDiagram
@@ -185,7 +162,7 @@ sequenceDiagram
     S->>AI: Session completed
 ```
 
-### 8. Key Decision Points & Transitions
+### 6. Key Decision Points & Transitions
 
 ```mermaid
 graph TD
@@ -215,7 +192,7 @@ graph TD
     style O fill:#c8e6c9
 ```
 
-### 9. Error Handling & Recovery Flow
+### 7. Error Handling & Recovery Flow
 
 ```mermaid
 graph TD
